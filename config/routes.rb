@@ -4,4 +4,5 @@ root to: 'pages#home'
   resources :flats do 
     resources :reviews, only: [ :new, :create]
   end
+  resources :reviews, only:[:destroy]
 end

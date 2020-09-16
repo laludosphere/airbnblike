@@ -12,3 +12,17 @@
 <%= link_to 'Edit', edit_flat_path(@flat) %> |
 <%= link_to 'Back', flats_path %> |
 <%= link_to 'Leave a review', new_flat_review_path(@flat) %>
+
+<ul class="list-group">
+  <% @flat.reviews.each do |review| %>
+    <li class="list-group-item">
+      <%= review.content %>
+      <%= link_to "Remove",
+                  review_path(review),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" } %>
+    </li>
+  <% end %>
+</ul>
+
+
