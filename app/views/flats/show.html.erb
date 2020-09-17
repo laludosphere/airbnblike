@@ -1,14 +1,14 @@
+
 <h2><%= @flat.name %></h2>
 <p><%= @flat.address %></p>
 <p><%= @flat.stars %></p>
 
 
-<%= link_to "Delete #{@flat.name}",
-            flat_path(@flat),
-            method: :delete,
-            data: { confirm: "Are you sure?" } %>
 
 
+
+<button id="sweet-alert-demo" >Delete <%= @flat.name %></button>
+<%= link_to "", flat_path(@flat), method: :delete, id: "delete-link", class: "hidden" %>
 <%= link_to 'Edit', edit_flat_path(@flat) %> |
 <%= link_to 'Back', flats_path %> |
 <%= link_to 'Leave a review', new_flat_review_path(@flat) %>
@@ -24,5 +24,7 @@
     </li>
   <% end %>
 </ul>
+
+
 
 

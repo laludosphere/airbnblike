@@ -12,3 +12,15 @@ const initUpdateNavbarOnScroll = () => {
 }
 
 export { initUpdateNavbarOnScroll };
+
+
+const chooseNavBar = () => {
+  const navbar = document.querySelector('.navbar-lewagon');
+  const banner = document.querySelector('.home-banner');
+  if (banner === null) {
+    navbar.classList.add('navbar-lewagon-white');
+    navbar.classList.remove('fixed-top');
+  }
+}
+
+export { chooseNavBar };

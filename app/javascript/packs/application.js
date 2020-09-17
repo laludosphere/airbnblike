@@ -25,7 +25,11 @@ require("channels")
 // External imports
 import "bootstrap";
 import { initUpdateNavbarOnScroll } from '../components/navbar';
+import { chooseNavBar } from '../components/navbar';
 import { loadDynamicBannerText } from '../components/banner';
+import { initSweetalert } from '../plugins/init_sweetalert';
+
+
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
@@ -34,5 +38,17 @@ document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
   initUpdateNavbarOnScroll();
-  loadDynamicBannerText();
+  chooseNavBar();
+  if (document.getElementById('banner-typed-text')) loadDynamicBannerText();
+  initSweetalert('#sweet-alert-demo', {
+    buttons: ["Stop", "Do it !"],
+    title: "Are you sure?",
+    text: "This action cannot be reversed",
+    icon: "warning"
+  }, (value) => {
+    if (value) {
+      const link = document.querySelector('#delete-link');
+      link.click();
+    }
+});
 });
