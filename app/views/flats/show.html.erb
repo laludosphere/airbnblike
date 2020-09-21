@@ -4,8 +4,8 @@
 <p><%= @flat.stars %></p>
 
 <% if @flat.photo.attached? %>
- <%= cl_image_tag @flat.photo, height: 300, width: 400, crop: :fill %>
-<% end %>
+ <%= cl_image_tag @flat.photo.key,  height: 200, width: 300, crop: :fill %>
+<% end%>
 
 
 <button id="sweet-alert-demo" >Delete <%= @flat.name %></button>
