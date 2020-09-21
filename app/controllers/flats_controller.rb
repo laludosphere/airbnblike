@@ -14,7 +14,7 @@ class FlatsController < ApplicationController
   def create
 
     @flat = Flat.new(flat_params)
-    if @flat.save
+    if @flat.save!
       redirect_to flat_path(@flat), notice: 'Flat was successfully created.'
     else
       render :new
@@ -27,7 +27,7 @@ class FlatsController < ApplicationController
 
   def update
     @flat = Flat.find(params[:id])
-    if @flat.update(flat_params)
+    if @flat.update!(flat_params)
       redirect_to flat_path(@flat), notice: 'Flat was successfully update.'
     else
       render :edit

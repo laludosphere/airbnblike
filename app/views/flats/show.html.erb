@@ -8,9 +8,6 @@
 <% end %>
 
 
-
-
-
 <button id="sweet-alert-demo" >Delete <%= @flat.name %></button>
 <%= link_to "", flat_path(@flat), method: :delete, id: "delete-link", class: "hidden" %>
 <%= link_to 'Edit', edit_flat_path(@flat) %> |
