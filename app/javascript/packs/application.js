@@ -24,11 +24,14 @@ require("channels")
 
 // External imports
 import "bootstrap";
+
 import { initUpdateNavbarOnScroll } from '../components/navbar';
 import { chooseNavBar } from '../components/navbar';
 import { loadDynamicBannerText } from '../components/banner';
 import { initSweetalert } from '../plugins/init_sweetalert';
-
+import {initMapbox} from '../plugins/init_mapbox';
+import {initAutocomplete} from '../plugins/init_autocomplete';
+import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 
 
 // Internal imports, e.g:
@@ -39,6 +42,8 @@ document.addEventListener('turbolinks:load', () => {
   // initSelect2();
   initUpdateNavbarOnScroll();
   chooseNavBar();
+  if (document.getElementById('map')) initMapbox();
+  if (document.getElementById('flat_address'))initAutocomplete();
   if (document.getElementById('banner-typed-text')) loadDynamicBannerText();
   initSweetalert('#sweet-alert-demo', {
     buttons: ["Stop", "Do it !"],
