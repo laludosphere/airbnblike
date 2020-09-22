@@ -1,6 +1,5 @@
 class FlatsController < ApplicationController
   def index
-
     if params[:query].present?
       @flats = Flat.where("name ILIKE ?", "%#{params[:query]}%")
     else
@@ -24,12 +23,13 @@ class FlatsController < ApplicationController
   end
 
   def create
-    @flat = Flat.new(flat_params)
-    if @flat.save
+    @flat = Flat.create!(flat_params)
+    # @flat = Flat.new(flat_params)
+    # if @flat.save
       redirect_to flat_path(@flat), notice: 'Flat was successfully created.'
-    else
-      render :new
-    end
+    # else
+    #   render :new
+    # end
   end
 
   def edit
@@ -54,6 +54,6 @@ class FlatsController < ApplicationController
   private
 
   def flat_params
-    params.require(:flat).permit(:name, :address, :stars, :photo)
+    params.require(:flat).permit(:name, :address, :stars, images: [] )
   end
 end

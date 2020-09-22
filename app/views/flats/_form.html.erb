@@ -2,6 +2,6 @@
   <%= f.input :name %>
   <%= f.input :address %>
   <%= f.input :stars %>
- <%= f.input :photo, as: :file %>
+   <%= f.input :images, as: :file, input_html: { multiple: true } %>
   <%= f.submit %>
 <% end %>

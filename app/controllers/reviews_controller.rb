@@ -11,7 +11,7 @@ class ReviewsController < ApplicationController
     @flat = Flat.find(params[:flat_id])
     @review.flat = @flat
     if @review.save
-    redirect_to flat_path(@flat)
+    redirect_to flat_path(@flat, anchor: "review-#{@review.id}")
     else
       render :new
     end
