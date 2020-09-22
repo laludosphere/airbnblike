@@ -1,6 +1,10 @@
 <div class="home-banner">
     <h1>Airbnb</h1>
     <p><span id="banner-typed-text"></span></p>
+  <%= form_tag flats_path, method: :get do %>
+    <%= text_field_tag :query, params[:query], class: "", placeholder: "Find a flat" %>
+    <%= submit_tag "Search", class: "" %>
+  <% end %>
 </div>
 
 <div class="container">

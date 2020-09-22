@@ -1,6 +1,11 @@
 class FlatsController < ApplicationController
   def index
-    @flats = Flat.where.not(latitude: nil, longitude: nil)
+
+    if params[:query].present?
+      @flats = Flat.where("name ILIKE ?", "%#{params[:query]}%")
+    else
+      @flats = Flat.where.not(latitude: nil, longitude: nil)
+    end
     @markers = @flats.map do |flat|
       {
         lat: flat.latitude,
