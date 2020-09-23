@@ -1,9 +1,19 @@
 class FlatsController < ApplicationController
   def index
-    if params[:query].present?
-      @flats = Flat.where("name ILIKE ?", "%#{params[:query]}%")
-    else
-      @flats = Flat.where.not(latitude: nil, longitude: nil)
+    @flats = Flat.where.not(latitude: nil, longitude: nil)
+    flats_filter = params[:flats_filter]
+    if flats_filter.present?
+      if flats_filter[:search].present?
+        @flats = Flat.search_by_name_and_address(flats_filter[:search])
+      end
+    if flats_filter.present?
+        if flats_filter[:min_price].present?
+          @flats = @flats.where("flats.price >= ?", flats_filter[:min_price])
+        end
+        if flats_filter[:max_price].present?
+          @flats = @flats.where("flats.price <= ?", flats_filter[:max_price])
+        end
+      end
     end
     @markers = @flats.map do |flat|
       {
