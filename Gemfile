@@ -37,6 +37,7 @@ gem 'pg_search', '~> 2.3.0'
 gem 'turbolinks_render'
 gem 'activestorage'
 
+
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'
   gem 'dotenv-rails'
