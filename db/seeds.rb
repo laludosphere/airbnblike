@@ -2,11 +2,13 @@ puts "Cleaning database..."
 Flat.destroy_all
 
 puts "Creating flats..."
-flat1 = { name: "Flat", address: "108, avenue du peuple belge, Lille, 59000", stars: 5 }
-flat2 =  { name: "House", address: "154, rue calmette, Lambres, 59552", stars: 3}
-
-[ flat1, flat2].each do |element|
-  flat = Flat.create!(element)
-  puts "Created #{flat.name}"
-end
+flat = Flat.create!(
+  user:        User.last,
+  address:     "55 rue du Faubourg Saint Honoré, 75008 Paris",
+  surface:     120,
+  price:       250,
+  room:        4,
+  description: "Amazing Office",
+  max_guests:  8,
+)
 puts "Finished!"

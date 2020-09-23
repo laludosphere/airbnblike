@@ -1,16 +1,39 @@
-<ul>
+<div class="container">
+  <div class="card-list">
   <% @flats.each do |flat| %>
-    <li><%= link_to flat.name, flat_path(flat) %></li>
-    <li><%= flat.address  %></li>
-    <li><%= flat.stars %></li>
+    <div class="card">
+      <li><%= link_to flat.name, flat_path(flat) %></li>
+        <div class="card-header">
+          <li><%= flat.address  %></li>
+          <li><%= flat.stars %></li>
+        </div>
+        <div class="card-author">
+        <div class="author-avatar">
+           <a class="author-avatar" href="#">
+            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier"%>
+           </a>
+            <svg class="half-circle" viewBox="0 0 106 57">
+            <path d="M102 4c0 27.1-21.9 49-49 49S4 31.1 4 4"></path>
+          </svg>
+        
+        
+        </div>
+        </div>
+    </div>
   <% end %>
-</ul>
-
-<%= link_to 'Add a Flat', new_flat_path(@flat)  %>
-  <div id="map"
-     style="width: 100%; height: 600px;"
-     data-markers="<%= @markers.to_json %>"
-     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>  
 </div>
 
-<%= @flat_count %>
+
+<p><%= link_to 'Add a Flat', new_flat_path(@flat)  %></p> 
+<p><%= @flat_count %> </p> 
+
+
+
+
+
+<%# <div id="map"
+     style="width: 100%; height: 600px;"
+     data-markers="<%= @markers.to_json %>
+     <%# data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>
+<%# </div> %>

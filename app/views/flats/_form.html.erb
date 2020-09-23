@@ -2,5 +2,14 @@
   <%= f.input :name %>
   <%= f.input :address %>
   <%= f.input :stars %>
+   <label for="flat_images" class="btn-upload">
+    Upload tes photos <i class="fas fa-cloud-upload-alt"></i>
+  </label>
+  <div id="flat-images-filename"></div>
+   <%= f.file_field :images, as: :file, multiple: true, class: "form-control d-none" %>
   <%= f.submit %>
 <% end %>
+
+
+
+
