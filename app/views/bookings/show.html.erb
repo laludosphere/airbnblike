@@ -1,0 +1,42 @@
+
+<div class="main-container">
+
+  <div class="book-container">
+    <div class="show-title">
+      <h2>Ma réservation</h2>
+      <%= link_to bookings_path do %>
+        <button class="btn btn-principal btn-margin-top">Toutes mes réservations</button>
+      <% end %>
+    </div>
+
+
+    <div class="book-content">
+      <div class="book-info">
+        <h3><%= @flat.address %></h3>
+        <div class="book-date">
+          <h5>Réservé :</h5>
+          <h5>Du <%= @booking.start_date.strftime('%e %B %Y')%></h5>
+          <h5>Au <%= @booking.end_date.strftime('%e %B %Y')%></h5>
+        </div>
+        <div class="book-price">
+          <h3>Prix total : <%= @total_price %> €</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+<% if @booking.display_review_form(current_user) %>
+  <div class="review">
+    <h2>Laissez une évaluation</h2>
+    <%= simple_form_for [@booking, @review] do |f| %>
+      <%= f.input :content %>
+      <%= f.input :stars, as: :hidden  %>
+      <div class="my-3">
+        <% 5.times do |index| %>
+          <i id="<%= index + 1 %>" class="review-rating far fa-star"></i>
+        <% end %>
+      </div>
+      <%= f.submit class: "btn btn-primary", value: "Valider" %>
+    <% end %>
+  </div>
+<% end %>

@@ -5,15 +5,15 @@ class ReviewsController < ApplicationController
     @review = Review.new
   end
 
-
   def create
-    @review = Review.new(review_params)
-    @flat = Flat.find(params[:flat_id])
-    @review.flat = @flat
+    @booking        = Booking.find(params[:booking_id])
+    @review         = Review.new(review_params)
+    @review.user    = current_user
+    @review.booking = @booking
     if @review.save
-    redirect_to flat_path(@flat, anchor: "review-#{@review.id}")
+      redirect_to flat_path(@booking.flat, anchor: "review-#{@review.id}")
     else
-      render :new
+      render "bookings/show"
     end
   end
   
@@ -26,6 +26,6 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:content)
+    params.require(:review).permit(:content, :stars)
   end
 end

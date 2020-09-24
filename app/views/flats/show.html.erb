@@ -20,7 +20,6 @@
 <%= link_to "", flat_path(@flat), method: :delete, id: "delete-link", class: "hidden" %>
 <%= link_to 'Edit', edit_flat_path(@flat) %> |
 <%= link_to 'Back', flats_path %> |
-<%= link_to 'Leave a review', new_flat_review_path(@flat) %>
 
 
 <div class="flat-content">
@@ -44,3 +43,7 @@
   </div>
 </div>
 
+
+  <div class="col-sm-6">      
+    <%= render 'bookings/form', booking: @booking %>
+  </div>

@@ -1,21 +1,19 @@
 class FlatsController < ApplicationController
   def index
-    @flats = Flat.where.not(latitude: nil, longitude: nil)
     flats_filter = params[:flats_filter]
+    @flats = Flat.where.not(latitude: nil, longitude: nil)
     if flats_filter.present?
       if flats_filter[:search].present?
         @flats = Flat.search_by_name_and_address(flats_filter[:search])
       end
+      if flats_filter[:min_price].present?
+        @flats = @flats.where("flats.price >= ?", flats_filter[:min_price])
+      end
+      if flats_filter[:max_price].present?
+        @flats = @flats.where("flats.price <= ?", flats_filter[:max_price])
+      end
       if flats_filter[:start_date].present? || flats_filter[:end_date].present?
         @flats = @flats.select { |flat| flat.is_available?(flats_filter[:start_date],flats_filter[:end_date]) }
-      end
-    if flats_filter.present?
-        if flats_filter[:min_price].present?
-          @flats = @flats.where("flats.price >= ?", flats_filter[:min_price])
-        end
-        if flats_filter[:max_price].present?
-          @flats = @flats.where("flats.price <= ?", flats_filter[:max_price])
-        end
       end
     end
     @markers = @flats.map do |flat|
@@ -29,6 +27,14 @@ class FlatsController < ApplicationController
 
   def show
     @flat = Flat.find(params[:id])
+    @booking = Booking.new
+    @bookings = @flat.bookings
+    @bookings_dates = @bookings.map do |booking|
+      {
+        from: booking.start_date,
+        to: booking.end_date
+      }
+    end
   end
 
   def new
@@ -36,7 +42,9 @@ class FlatsController < ApplicationController
   end
 
   def create
-    @flat = current_user.flats.build(flat_params)
+    @flat = Flat.new(flat_params)
+    @flat.user = current_user
+    # @flat = current_user.flats.build(flat_params)
     if @flat.save
       redirect_to flat_path(@flat), notice: 'Flat was successfully created.'
     else
@@ -63,8 +71,8 @@ class FlatsController < ApplicationController
     redirect_to flats_path
   end
 
-  def all_my_flats
-    @all_my_user_flats = Flat.where("user_id = ?", current_user.id)
+  def my_flats
+    @flats = current_user.flats
   end
 
   private

@@ -1,0 +1,35 @@
+<div class="pages-container margin-nav">
+  <h3>Mes réservations</h3>
+  <div class="cards-grid-3">
+    <% if @bookings.empty? %>
+      <p>Pas de réservations</p>
+      <%= link_to flats_path do %>
+        <button class="btn btn-principal">Chercher un appart</button>
+      <% end %>
+    <% else %>
+      <% @bookings.each do |booking| %>
+        <div class="card-flat">
+          <%= link_to booking_path(booking.id) do %>
+            <h5><%= booking.flat.address %></h5>
+            <div class="card-flat-content">
+              <div class="card-flat-date">
+                <p>Du <%= booking.start_date.strftime('%e/%m/%Y')%></p>
+                <p>au <%= booking.end_date.strftime('%e/%m/%Y')%></p>
+              </div>
+              <div>
+                <%= link_to booking_path(booking.id) do %>
+                  <button class="btn btn-principal btn-margin-top">Voir</button>
+                <% end %>
+                <%= link_to booking_path(booking),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" } do %>
+                  <button class="btn btn-principal btn-margin-top">Annuler</button>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

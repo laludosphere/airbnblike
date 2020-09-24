@@ -1,5 +1,6 @@
 class Review < ApplicationRecord
-  belongs_to :flat
+  belongs_to :user
+  belongs_to :booking
   validates :content, presence: true
-  validates :content, length: {minimum:5}
+  validates :stars,  numericality: { greater_than: 0, less_than_or_equal_to: 5 }
 end
