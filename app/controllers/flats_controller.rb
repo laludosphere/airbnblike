@@ -6,6 +6,9 @@ class FlatsController < ApplicationController
       if flats_filter[:search].present?
         @flats = Flat.search_by_name_and_address(flats_filter[:search])
       end
+      if flats_filter[:start_date].present? || flats_filter[:end_date].present?
+        @flats = @flats.select { |flat| flat.is_available?(flats_filter[:start_date],flats_filter[:end_date]) }
+      end
     if flats_filter.present?
         if flats_filter[:min_price].present?
           @flats = @flats.where("flats.price >= ?", flats_filter[:min_price])
@@ -33,13 +36,12 @@ class FlatsController < ApplicationController
   end
 
   def create
-    @flat = Flat.create!(flat_params)
-    # @flat = Flat.new(flat_params)
-    # if @flat.save
+    @flat = current_user.flats.build(flat_params)
+    if @flat.save
       redirect_to flat_path(@flat), notice: 'Flat was successfully created.'
-    # else
-    #   render :new
-    # end
+    else
+      render :new
+    end
   end
 
   def edit
@@ -61,9 +63,13 @@ class FlatsController < ApplicationController
     redirect_to flats_path
   end
 
+  def all_my_flats
+    @all_my_user_flats = Flat.where("user_id = ?", current_user.id)
+  end
+
   private
 
   def flat_params
-    params.require(:flat).permit(:name, :address, :stars, images: [] )
+    params.require(:flat).permit(:name, :address, :stars, :price, images: [])
   end
 end

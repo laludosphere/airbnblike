@@ -1,4 +1,6 @@
 class Flat < ApplicationRecord
+  belongs_to :user
+  has_many :bookings, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many_attached :images
   geocoded_by :address
@@ -9,4 +11,11 @@ class Flat < ApplicationRecord
     using: {
       tsearch: { prefix: true } 
     }
+
+    def is_available?(start_date, end_date)
+      bookings.each do |b|
+        return false if (b.start_date..b.end_date).overlaps?(start_date.to_date..end_date.to_date)
+      end
+      return true
+    end
 end
