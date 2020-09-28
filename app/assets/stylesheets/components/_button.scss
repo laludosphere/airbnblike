@@ -1,3 +1,67 @@
 .btn-upload {
   cursor: pointer
 }
+
+.button-simple {
+  cursor: pointer;
+  text-decoration: none;
+  font-style: normal;
+  border-radius: 5px;
+  border:1px solid #F9385C;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0.5rem;
+  font-size: 16px;
+  background-color: white;
+  color: #F9385C 
+}
+
+.button-simple:hover{
+  transition: .5s;
+  background-color: #F9385C;
+  border: 1px solid #F9385C;
+  color: #fff;
+  text-decoration: none;
+}
+
+
+.button-select {
+  border: #FFC65A 1px solid;
+  border-radius: 5px;
+  display: inline-block;
+  font-weight: 400;
+  font-family: "Baloo Tamma 2";
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid transparent;
+  padding: 5px 0.55rem 3px 0.55rem;
+  font-size: 16px;
+  line-height: 1.7;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+}
+
+.button-action {
+  width: 100%;
+  background-color: #FFC65A;
+  border-color: #FFC65A;
+  border-radius: 5px;
+  display: inline-block;
+  font-weight: 400;
+  font-family: "Baloo Tamma 2";
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid transparent;
+  padding: 5px 0.55rem 3px 0.55rem;
+  font-size: 16px;
+  line-height: 1.7;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.button-action:hover {
+  color: #212529;
+  background-color: #ffb934;
+  border-color: #ffb427;
+  text-decoration: none;
+}

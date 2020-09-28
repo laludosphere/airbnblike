@@ -1,12 +1,12 @@
 <% if current_user != @flat.user %>
-<div class="card p-5 m-5 shadow">
+<div class="card p-2">
 <h5>I would like to book this flat</h5>
     <%= simple_form_for [@flat, @booking] do |f| %>
             <i class="fas fa-calendar-week"></i>
             <%= f.input :start_date  %>
             <i class="fas fa-calendar-week"></i>
             <%= f.input :end_date  %>
-            <%= f.submit "Send a request for this flat" %>
+            <%= f.submit "Send a request for this flat", class: "btn btn-outline-primary" %>
     <% end  %>
 <%end %>
 </div>

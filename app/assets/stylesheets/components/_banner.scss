@@ -1,14 +1,18 @@
 .home-banner {
-  background-image: url('https://images.unsplash.com/photo-1472289065668-ce650ac443d2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80');
+  background-image: url('https://iphonesoft.fr/images/_082019/fond-ecran-dynamique-macos-wallpaper-club.jpg');
   background-size: cover;
   height: 100vh;
-  color: #eee;
+  color: white;
   text-align: center;
-  padding-top: 50vh;
-
-  h1 {
-    font-size: 50px;
-  }
+  padding-top: 20vh;
+  font-size:40px;
+  line-height: 0.9;
 }
 
+.footer {
+  min-height: calc(100vh - 31vh);
+}
 
+.footer-small {
+  min-height: calc(100vh - 35vh);
+}

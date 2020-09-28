@@ -1,16 +1,39 @@
 <div class="home-banner">
-    <h1>Airbnb</h1>
-    <p><span id="banner-typed-text"></span></p>
-  <%= form_tag flats_path, method: :get do %>
-    <%= text_field_tag :query, params[:query], class: "", placeholder: "Find a flat" %>
-    <%= submit_tag "Search", class: "" %>
-  <% end %>
+  <h1>Airbnb</h1>
+  <p><span id="banner-typed-text"></span></p>
+  <%= link_to "Commencez l'aventure", flats_path, class:"btn btn-primary" %>
+  <p><%= @flat_count %> </p>   
+  <p><%= link_to 'Devenez Hôte', new_flat_path(@flat), class: 'btn btn-primary'  %></p>  
 </div>
 
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-6">
-      <%= "Lorem ipsum dolor sit amet, consectetur adipisicing elit " * 50 %>
+<div class="container pt-4">
+  <div class="row"> 
+    <div class="col-md-12 my-5">
+      <h2 class='text-center bg-transparent text-dark p-2'>Our Service</h2>
+    </div>
+    <div class="col-md-4">
+      <div class="box shadow py-3 px-3">
+        <%= image_tag "https://images.unsplash.com/photo-1601060331539-aa74bd666dc1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60", class:"img-fluid shadow"%>
+        <h3 class="pt-2">Des logements uniques</h3>
+        <p>Bien plus que de simples logements pour passer la nuit.</p>
+        <%= link_to "Read More", flats_path,  type: "submit", class:"btn btn-outline-primary mt-2 "%>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="box shadow py-3 px-3">
+        <%= image_tag "https://images.unsplash.com/photo-1557825835-70d97c4aa567?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60", class:"img-fluid shadow" %>
+        <h3 class=" pt-2">Expérience en ligne </h3>
+        <p>Des activités uniques à faire ensemble, organisées par des hôtes du mone entier.</p>
+        <%= link_to "Read More", flats_path,   type: "submit", class:"btn btn-outline-primary mt-2"  %>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="box shadow py-3 px-3">
+        <%= image_tag "https://images.unsplash.com/photo-1575517111478-7f6afd0973db?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60", class:"img-fluid shadow" %>
+        <h3 class="pt-2">Logements entiers</h3>
+        <p>Des logements entiers confortables, avec de la place pour accueillir les amis.</p>
+        <%= link_to "Read More", flats_path,  type: "submit", class:"btn btn-outline-primary mt-2" %>
+      </div>
     </div>
   </div>
 </div>

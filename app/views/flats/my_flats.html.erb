@@ -8,7 +8,7 @@
       <% end %>
 
     <% else %>
-      <% @flats.each do |flat| %>
+     
         <div class="card-flat">
           <%= link_to edit_flat_path(flat.id) do %>
             <h5 class="card-flat-address"><%= flat.address %></h5>
@@ -24,7 +24,7 @@
               <button class="btn btn-principal btn-margin-top">Supprimer</button>
             <% end %>
           </div>
-        <% end %>
+       
       <% end %>
     <% end %>
 
