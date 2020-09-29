@@ -24,8 +24,10 @@
               </div>
               <div class="card-body">
                 <h5 class="card-title text-center"><%= @flat.name %></h5> 
-                <p class="card-text"><%= @flat.address %></p>         
-                <p class="card-text d-flex justify-content-end">  <%= @flat.price %></p>
+                <p class="card-text"><%= @flat.address %></p> 
+                <p class="card-text d-flex justify-content-end">
+                <span id="flat-price-per-night"><%= @flat.price %></span> € / nuit
+                </p>  
                 <button id="sweet-alert-demo" class="btn btn-outline-danger">Delete </button>
                 <%= link_to "", flat_path(@flat), method: :delete, id: "delete-link", class: "hidden" %>
                 <%= link_to 'Edit', edit_flat_path(@flat), class:'btn btn-outline-warning' %> 
@@ -56,3 +58,8 @@
     <p><%= review.content %></p>
   <% end %>
 </div>
+
+<div
+  id="booking-form-div"
+  data-bookings="<%= @bookings_dates.to_json %>"
+>
