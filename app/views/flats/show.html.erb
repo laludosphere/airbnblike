@@ -1,71 +1,58 @@
-<div class="container mt-3">
-  <div class="d-flex">
+<div class="container">
+  <div class="row">
     <div class="col-6"> 
-      <div class="card" style='width: 23rm;'>
-        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-          <div class="carousel-inner">
-            <% @flat.images.each_with_index do |image, index| %>
-              <div class="carousel-item <%= "active" if index == 0%> ">
-                <%= image_tag image, height: 250, width: 350 %>
+      <div class="container">
+        <div class="row main-row">
+          <div class="col-md-4 mb-5">
+            <div class="card p-3" style="width: 22rem;">
+              <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                  <% @flat.images.each_with_index do |image, index| %>
+                    <div class="carousel-item <%= "active" if index == 0%> ">
+                      <%= image_tag image, height: 250, width: 350, class:'"card-img-top shadow bg-white rounded' %>
+                    </div>
+                  <% end %>
+                  </div>
+                  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                  </a>
               </div>
-            <% end %>
-            </div>
-            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="sr-only">Next</span>
-            </a>
-        </div>
-          <div class="card-body">
-            <h5 class="card-title"><%= @flat.name %></h5> 
-            <p class="card-text"><%= @flat.address %></p>         
-            <p class="card-text d-flex justify-content-end">  <%= @flat.price %></p>
-                <button id="sweet-alert-demo" class="btn btn-outline-danger">Delete <%= @flat.name %></button>
+              <div class="card-body">
+                <h5 class="card-title text-center"><%= @flat.name %></h5> 
+                <p class="card-text"><%= @flat.address %></p>         
+                <p class="card-text d-flex justify-content-end">  <%= @flat.price %></p>
+                <button id="sweet-alert-demo" class="btn btn-outline-danger">Delete </button>
                 <%= link_to "", flat_path(@flat), method: :delete, id: "delete-link", class: "hidden" %>
                 <%= link_to 'Edit', edit_flat_path(@flat), class:'btn btn-outline-warning' %> 
                 <%= link_to 'Back', flats_path, class: "btn btn-outline-secondary" %>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-          <div class="col-6">      
-          <%= render 'bookings/form', booking: @booking %>
-         </div>
+    <div class="col-6 mt-5">
+      <%= render 'bookings/form', booking: @booking %>
+    </div>
   </div>
 </div>
 
-   
-      
-
-
-<p><%= pluralize @flat.reviews.size, "review" %></p>
-<p>  <% if @flat.reviews.blank? %>
-    Be the first to leave a review for <%= @flat.name %>
-  <% else %>
-    <% @flat.reviews.each do |review| %>
-      <span id="review-<%= review.id %>"><%= review.content %></span>
-            <%= link_to "Remove",
-                  review_path(review),
-                  method: :delete,
-                  data: { confirm: "Are you sure?" } %>
-    <% end %>
+<p>Moyenne : <%= @average_rating %></p>
+<div class="reviews">
+  <% @reviews.each do |review| %>
+    <p>
+      <% review.rating.times do %>
+        <i class="fas fa-star"></i>
+      <% end %>
+      <% (5 - review.rating).times do %>
+        <i class="far fa-star"></i>
+      <% end %>
+    </p>
+    <p><%= review.content %></p>
   <% end %>
-  </p>
-
-
-    <div class="container">
-    <div class="row main-row">
-      <div class="col-md-4 mb-5">
-      <div class="card p-3" style="wifth: 18rem;">
-        <%= image_tag 'https://images.unsplash.com/photo-1551169795-9e8eb7adb400?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', class: "card-img-top shadow bg-white rounded"%>
-        <div class="card-body">
-          <h5 class='card-title'>Forest</h5>
-          <p class="card-text">lorem ipsum</p>
-          <%= link_to "Read More", class:"btn btn-outline-dark" %>
-        </div>
-      </div>
-      </div>
-    </div>
-  </div>
+</div>

@@ -5,10 +5,9 @@ Rails.application.routes.draw do
   resources :flats do
     resources :bookings, only: [:new, :create]
   end
-
-
-
-  
+  resources :bookings do
+    resources :reviews, only: [:create]
+  end
   get "my_flats", to: "flats#my_flats"
   get "all_my_bookings", to: "bookings#all_my_bookings"
 end

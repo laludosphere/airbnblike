@@ -6,27 +6,25 @@
       <%= link_to new_flat_path do %>
         <button class="btn btn-principal">Publier une annonce</button>
       <% end %>
-
     <% else %>
-     
         <div class="card-flat">
+        <% @flats.each do |flat|%>
+          <h5><%= flat.address %></h5>
+          <%= link_to flat_path(flat.id) do %>
+            <button class="btn btn-principal btn-margin-top">Voir</button>
+          <% end %>
           <%= link_to edit_flat_path(flat.id) do %>
-            <h5 class="card-flat-address"><%= flat.address %></h5>
-            <%= link_to flat_path(flat.id) do %>
-              <button class="btn btn-principal btn-margin-top">Voir</button>
-            <% end %>
-            <%= link_to edit_flat_path(flat.id) do %>
-              <button class="btn btn-principal btn-margin-top">Editer</button>
-            <% end %>
-            <%= link_to flat_path(flat.id),
+            <button class="btn btn-principal btn-margin-top">Editer</button>
+          <% end %>
+          <%= link_to flat_path(flat.id),
                 method: :delete,
                 data: { confirm: "Attention, la suppression est définitive" } do %>
-              <button class="btn btn-principal btn-margin-top">Supprimer</button>
-            <% end %>
-          </div>
-       
-      <% end %>
+            <button class="btn btn-principal btn-margin-top">Supprimer</button>
+          <% end %>
+        <% end %>
     <% end %>
-
   </div>
 </div>
+
+
+

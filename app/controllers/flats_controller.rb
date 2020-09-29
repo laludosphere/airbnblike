@@ -34,6 +34,8 @@ class FlatsController < ApplicationController
         from: booking.start_date,
         to: booking.end_date
       }
+    @reviews = @flat.reviews
+    @average_rating = @reviews.average(:rating)
     end
   end
 

@@ -24,6 +24,7 @@ class BookingsController < ApplicationController
       lat: @flat.latitude,
       lng: @flat.longitude
     }]
+    @review = Review.new
   end
 
   def destroy
