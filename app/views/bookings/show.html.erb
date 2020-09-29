@@ -31,7 +31,7 @@
     <h2>Laissez une évaluation</h2>
     <%= simple_form_for [@booking, @review] do |f| %>
       <%= f.input :content %>
-      <%= f.input :stars, as: :hidden  %>
+      <%= f.input :rating, as: :hidden  %>
       <div class="my-3">
         <% 5.times do |index| %>
           <i id="<%= index + 1 %>" class="review-rating far fa-star"></i>

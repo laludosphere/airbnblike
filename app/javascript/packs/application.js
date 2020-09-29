@@ -32,6 +32,7 @@ import { initSweetalert } from '../plugins/init_sweetalert';
 import {initMapbox} from '../plugins/init_mapbox';
 import {initAutocomplete} from '../plugins/init_autocomplete';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
+import { dynamicRating } from "../plugins/starsInReviewForm";
 
 
 // Internal imports, e.g:
@@ -42,6 +43,7 @@ document.addEventListener('turbolinks:load', () => {
   // initSelect2();
   initUpdateNavbarOnScroll();
   chooseNavBar();
+  dynamicRating();
   if (document.getElementById('map')) initMapbox();
   if (document.getElementById('flat_address'))initAutocomplete();
   if (document.getElementById('banner-typed-text')) loadDynamicBannerText();

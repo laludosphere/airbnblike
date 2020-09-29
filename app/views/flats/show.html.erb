@@ -26,7 +26,7 @@
                 <h5 class="card-title text-center"><%= @flat.name %></h5> 
                 <p class="card-text"><%= @flat.address %></p>         
                 <p class="card-text d-flex justify-content-end">  <%= @flat.price %></p>
-                <button id="sweet-alert-demo" class="btn btn-outline-danger">Delete <%= @flat.name %></button>
+                <button id="sweet-alert-demo" class="btn btn-outline-danger">Delete </button>
                 <%= link_to "", flat_path(@flat), method: :delete, id: "delete-link", class: "hidden" %>
                 <%= link_to 'Edit', edit_flat_path(@flat), class:'btn btn-outline-warning' %> 
                 <%= link_to 'Back', flats_path, class: "btn btn-outline-secondary" %>
@@ -41,16 +41,18 @@
     </div>
   </div>
 </div>
-  
-<p><%= pluralize @flat.reviews.size, "review" %></p>
-<p>  <% if @flat.reviews.blank? %>
-    Be the first to leave a review for <%= @flat.name %>
-  <% else %>
-    <% @flat.reviews.each do |review| %>
-      <span id="review-<%= review.id %>"><%= review.content %></span>
-            <%= link_to "Remove",
-                  review_path(review),
-                  method: :delete,
-                  data: { confirm: "Are you sure?" } %>
-    <% end %>
+
+<p>Moyenne : <%= @average_rating %></p>
+<div class="reviews">
+  <% @reviews.each do |review| %>
+    <p>
+      <% review.rating.times do %>
+        <i class="fas fa-star"></i>
+      <% end %>
+      <% (5 - review.rating).times do %>
+        <i class="far fa-star"></i>
+      <% end %>
+    </p>
+    <p><%= review.content %></p>
   <% end %>
+</div>
