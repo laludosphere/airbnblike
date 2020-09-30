@@ -1,25 +1,13 @@
 <% if current_user != @flat.user %>
-<div class="card p-2">
-<h5>I would like to book this flat</h5>
-    <%= simple_form_for [@flat, @booking] do |f| %>
-            <i class="fas fa-calendar-week"></i>
-            <%= f.input :start_date  %>
-            <i class="fas fa-calendar-week"></i>
-            <%= f.input :end_date  %>
-            <%= f.submit "Send a request for this flat", class: "btn btn-outline-primary" %>
-    <% end  %>
-<%end %>
-</div>
-
-<div class="container">
+<div class="card-form">
   <div class="form-wrapper">
-    <h2>Book a flat</h2>
     <%= simple_form_for [@flat, @booking] do |f| %>
       <%= f.input :start_date, label: "Sélectionnez vos dates:", as: :string, required: false, input_html: { id: "range_start", class: "d-none"} %>
       <%= f.input :end_date, label: false, as: :string, required: false, input_html: { id: "range_end", class: "d-none" } %>
-      <%= f.button :submit, "Book", class: "btn btn-primary" %>
+      <%= f.button :submit, "Book", class: "btn btn-primary " %>
     <% end %>
     <p>Réservation pour <span id="total-nights">0</span> nuits</p>
     <p>Prix total : <span id="total-price">0</span> € </p>
   </div>
 </div>
+<% end %>

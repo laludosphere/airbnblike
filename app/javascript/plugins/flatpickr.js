@@ -21,8 +21,8 @@ const endDate = document.getElementById("range_end");
 // je recup l'emplacement du nb de nuits
 const totalNights = document.getElementById("total-nights");
 //je recup le prix d'une nuit dans l'appart
-const flatPricePerNight = document.getElementById("flat-price-per-night").innerText;
-console.log(flatPricePerNight)
+// const flatPricePerNight = document.getElementById("#flat-price-per-night");
+// console.log(flatPricePerNight)
 // et l'emplacement du prix total 
 const totalPriceElement = document.getElementById("total-price");
 
@@ -34,13 +34,13 @@ const dynamicPrice = () => {
     totalNights.innerText = nbrOfNights 
   }
 
-  if(startDate.value && endDate.value) {
-    totalPriceElement.innerText = nbrOfNights * flatPricePerNight
-  }
-};
+  // if(startDate.value && endDate.value) {
+  //   totalPriceElement.innerText = nbrOfNights * flatPricePerNight
+  // }
+ };
 
-[startDate, endDate].forEach(date => {
-  date.addEventListener("change", (event) => {
-    dynamicPrice();
-  });
-})
+// [startDate, endDate].forEach(date => {
+//   date.addEventListener("change", (event) => {
+//     dynamicPrice();
+//   });
+// })

@@ -33,7 +33,7 @@ import {initMapbox} from '../plugins/init_mapbox';
 import {initAutocomplete} from '../plugins/init_autocomplete';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import { dynamicRating } from "../plugins/starsInReviewForm";
-import "../plugins/flatpickr"
+import "../plugins/flatpickr";
 
 
 // Internal imports, e.g:

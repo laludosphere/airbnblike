@@ -1,65 +1,80 @@
+<div class="container mt-5">
+<div class="row"> 
+<div class="col-8">
+  <div class="card ">
+    <div class="card-trip">
+              <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                      <% @flat.images.each_with_index do |image, index| %>
+                        <div class="carousel-item <%= "active" if index == 0%> ">
+                          <%= image_tag image, height: 250, width: 350, class:'"card-img-top shadow bg-white rounded' %>
+                        </div>
+                      <% end %>
+                      </div>
+                      <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                      </a>
+                      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                      </a>
+                  </div>
+              </div>
+        <div class="card-trip-footer">  
+            <h3><%= @flat.name %></h3>
+            <p><%= @flat.address %></p>
+        </div>
+        <div class="card-trip-end">
+           <%= link_to edit_flat_path(@flat), method: :get do %>
+              <i class=" link fas fa-pen ml-3 mt-2" style="font-size: 30px;" ></i>
+            <% end %>
+            <button id="sweet-alert-demo" class="btn btn-outline-danger">Delete </button>
+            <%= link_to "", flat_path(@flat), method: :delete, id: "delete-link", class: "hidden" %>
+            <button id="sweet-alert-demo" class="d-none" ></button>
+            <%= link_to "Back", flats_path(@flat), class:"btn btn-secondary btn-sm" %>  
+        </div>
+          <div>
+            <h2 class="card-trip-pricing"><%= @flat.price %>€</h2>
+        </div>
+    </div>     
+  </div>
+        <div class="col-4">
+      <%= render 'bookings/form', booking: @booking%>
+    <div
+      id="booking-form-div"
+      data-bookings= "<%= @bookings_dates.to_json %>"
+    >
+    </div>  
+    </div>
+    </div>
+</div>
+</div>      
+
+
+
 <div class="container">
   <div class="row">
-    <div class="col-6"> 
-      <div class="container">
-        <div class="row main-row">
-          <div class="col-md-4 mb-5">
-            <div class="card p-3" style="width: 22rem;">
-              <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                  <% @flat.images.each_with_index do |image, index| %>
-                    <div class="carousel-item <%= "active" if index == 0%> ">
-                      <%= image_tag image, height: 250, width: 350, class:'"card-img-top shadow bg-white rounded' %>
-                    </div>
-                  <% end %>
-                  </div>
-                  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                  </a>
-                  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                  </a>
-              </div>
-              <div class="card-body">
-                <h5 class="card-title text-center"><%= @flat.name %></h5> 
-                <p class="card-text"><%= @flat.address %></p> 
-                <p class="card-text d-flex justify-content-end">
-                <span id="flat-price-per-night"><%= @flat.price %></span> € / nuit
-                </p>  
-                <button id="sweet-alert-demo" class="btn btn-outline-danger">Delete </button>
-                <%= link_to "", flat_path(@flat), method: :delete, id: "delete-link", class: "hidden" %>
-                <%= link_to 'Edit', edit_flat_path(@flat), class:'btn btn-outline-warning' %> 
-                <%= link_to 'Back', flats_path, class: "btn btn-outline-secondary" %>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div class="card">
+    <div class="card-body">
+    <% if @reviews.nil?   %>
+          <p>Pas de commentaires</p>
+        <% else %>
+        <p>Moyenne : <%= @average_rating %></p>
+          <% @reviews.each do |review| %>
+            <p>
+              <% review.rating.times do %>
+                <i class="fas fa-star"></i>
+              <% end %>
+              <% (5 - review.rating).times do %>
+                <i class="far fa-star"></i>
+              <% end %>
+            </p>
+            <p><%= review.content %></p>
+              <p>Posted <%= review.created_at.strftime("%A, %b %d") %></p>
+          <% end %>
+          <% end %>
       </div>
-    </div>
-    <div class="col-6 mt-5">
-      <%= render 'bookings/form', booking: @booking %>
     </div>
   </div>
 </div>
-
-<p>Moyenne : <%= @average_rating %></p>
-<div class="reviews">
-  <% @reviews.each do |review| %>
-    <p>
-      <% review.rating.times do %>
-        <i class="fas fa-star"></i>
-      <% end %>
-      <% (5 - review.rating).times do %>
-        <i class="far fa-star"></i>
-      <% end %>
-    </p>
-    <p><%= review.content %></p>
-  <% end %>
-</div>
-
-<div
-  id="booking-form-div"
-  data-bookings="<%= @bookings_dates.to_json %>"
->

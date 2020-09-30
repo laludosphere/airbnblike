@@ -1,9 +1,7 @@
 <div class="home-banner">
   <h1>Airbnb</h1>
   <p><span id="banner-typed-text"></span></p>
-  <%= link_to "Commencez l'aventure", flats_path, class:"btn btn-primary" %>
-  <p><%= @flat_count %> </p>   
-  <p><%= link_to 'Devenez Hôte', new_flat_path(@flat), class: 'btn btn-primary'  %></p>  
+  <p> <span>  <%= link_to "Commencez l'aventure", flats_path, class:"btn btn-primary mt-3" %></span> <%= link_to 'Devenez Hôte', new_flat_path(@flat), class: 'btn btn-primary mt-3' %></p>  
 </div>
 
 <div class="container pt-4">
